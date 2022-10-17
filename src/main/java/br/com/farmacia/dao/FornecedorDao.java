@@ -14,7 +14,7 @@ public class FornecedorDao {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO fornecedores ");
 		sql.append("(descricao) ");
-		sql.append("VALUES(?)");
+		sql.append("VALUES (?) ");
 
 		Connection conexao = null;
 		try {
@@ -26,9 +26,9 @@ public class FornecedorDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		PreparedStatement comando = (PreparedStatement) conexao.prepareStatement(sql.toString());
+		PreparedStatement comando = conexao.prepareStatement(sql.toString());
 		comando.setString(1, f.getDescricao());
-		comando.executeQuery();
+		comando.executeUpdate();
 	}
 
 	public void excluirFornecedor(Fornecedor f) throws SQLException {
@@ -132,7 +132,4 @@ public class FornecedorDao {
 		}
 		return lista;
 	}
-
- 
-	
 }

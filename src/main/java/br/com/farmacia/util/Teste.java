@@ -12,23 +12,11 @@ public class Teste {
 Fornecedor f1 = new Fornecedor();
 FornecedorDao fdao = new FornecedorDao();
 System.out.println();
-try {
-	ArrayList<Fornecedor>  lista = fdao.listar();
-	for(Fornecedor f : lista) {
-		System.out.println("Resultado: " + f);
-	}
+
+f1.setDescricao("descricao2");
+fdao.salvarFonecedor(f1);
+
 	
-} catch (Exception e) {
-	// TODO: handle exception
-}
-/*
- * f1.setDescricao("X"); try{ ArrayList<Fornecedor> lista =
- * fdao.buscarPorDescricao(f1); for(Fornecedor f : lista) {
- * System.out.println("Resultado " + f.getCodigo() + " "+ f.getDescricao()); }
- * }catch (Exception e) { System.out.println("erro ao buscar"); }
- */
-
-
 	}
 
 }

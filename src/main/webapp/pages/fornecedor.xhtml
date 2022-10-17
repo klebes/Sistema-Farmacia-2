@@ -10,7 +10,7 @@
 		<ui:include src="/include/menu.xhtml" />
 	</ui:define>
 	<ui:define name="conteudo">
-		<h:form id="fornecedor">
+		<h:form id="frmfornecedor">
 			<p:dataTable id="tbfornecedor" widgetVar="tabelaFornecedor"
 				emptyMessage="Nenhum registo encontrado!"
 				value="#{MBFornecedor.itens}"
@@ -26,19 +26,20 @@
 					filterBy="#{item.descricao}">
 					<h:outputText value="#{item.descricao}" />
 				</p:column>
-<f:facet name="footer"><p:commandButton value="novo" onclick="PF('dlgFornovo').show();"/></f:facet>
+<f:facet name="footer">
+<p:commandButton value="novo" actionListener="#{MBFornecedor.prepararNovoFornecedor}" oncomplete ="PF('dlgFornovo').show();" update=":frmForNovo:pnForNovo"/></f:facet>
 			</p:dataTable>
 
 		</h:form>
 		<p:dialog widgetVar="dlgFornovo" resizable="false" draggable="false" header="Cadastrar Fornecedor" modal="true" appendTo="@(body)" >
-		<h:form>
-			<h:panelGrid columns="2">
+		<h:form id="frmForNovo">
+			<h:panelGrid id="pnForNovo" columns="2">
 				<p:outputLabel value="Descrição:" />
-				<h:inputText size="30" maxlength="50" />
+				<h:inputText size="30" maxlength="50" value="#{MBFornecedor.fornecedor.descricao}"/>
 			</h:panelGrid>
 			<h:panelGrid columns="2">
-				<p:button value="Salvar" />
-				<p:button value="Cancelar" onclick="PF('dlgFornovo').hide();" />
+				<p:commandButton value="Salvar" actionListener="#{MBFornecedor.novoFornecedor}" oncomplete="PF('dlgFornovo').hide();" update=":frmfornecedor:tbfornecedor"/>
+				<p:commandButton value="Cancelar" onclick="PF('dlgFornovo').hide();" />
 			</h:panelGrid>
 		</h:form>
 </p:dialog>
